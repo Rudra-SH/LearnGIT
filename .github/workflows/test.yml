@@ -17,7 +17,7 @@ jobs:
           # For example: const blocksArray = await axios.get('https://api.example.com/blocks');
 
       - name: Process Blocks and Get Logs
-        run: |
+        script: |
           const axios = require('axios');
 
           // Replace 'blocksArray' with the actual API response
