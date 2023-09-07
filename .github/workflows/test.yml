@@ -3,7 +3,7 @@ name: Fetch Personal Repositories
 on:
   push:
     branches:
-      - main  # Replace with your default branch name
+      - main
 
 jobs:
   fetch-repos:
@@ -27,11 +27,11 @@ jobs:
             const { Octokit } = require('@octokit/rest');
             const myfetch = require('node-fetch');
 
+            // Assign myfetch to globalThis.fetch
+            globalThis.fetch = myfetch;
+
             const octokit = new Octokit({
               auth: process.env.PERSONAL_ACCESS_TOKEN,
-              request: {
-                fetch: () => myfetch,
-              },
             });
 
             octokit.repos
