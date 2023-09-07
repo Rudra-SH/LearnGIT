@@ -31,7 +31,7 @@ jobs:
             globalThis.fetch = myfetch;
 
             const octokit = new Octokit({
-              auth: process.env.PERSONAL_ACCESS_TOKEN,
+              auth: secrets.PERSONAL_ACCESS_TOKEN,
             });
 
             octokit.repos
