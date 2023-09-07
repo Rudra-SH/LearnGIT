@@ -19,17 +19,15 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install @octokit/rest node-fetch
+        run: npm install @octokit/rest
 
       - uses: actions/github-script@v6
         with:
           script: |
             const { Octokit } = require('@octokit/rest');
-            //const fetch = require('node-fetch'); // Import node-fetch
 
             const octokit = new Octokit({
               auth: process.env.PERSONAL_ACCESS_TOKEN,
-              //request: { fetch }, // Pass fetch implementation
             });
 
             octokit.repos
