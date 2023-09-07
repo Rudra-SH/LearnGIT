@@ -1,7 +1,9 @@
 name: Fetch Personal Repositories
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main  # Replace with your default branch name
 
 jobs:
   fetch-repos:
@@ -20,7 +22,7 @@ jobs:
         run: npm install @octokit/rest
 
       - name: Fetch Personal Repositories
-        script: |
+        run: |
           const { Octokit } = require('@octokit/rest');
 
           const octokit = new Octokit({
