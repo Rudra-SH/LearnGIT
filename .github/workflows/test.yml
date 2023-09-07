@@ -25,11 +25,11 @@ jobs:
         with:
           script: |
             const { Octokit } = require('@octokit/rest');
-            const fetch = require('node-fetch'); // Import node-fetch
+            //const fetch = require('node-fetch'); // Import node-fetch
 
             const octokit = new Octokit({
               auth: process.env.PERSONAL_ACCESS_TOKEN,
-              request: { fetch }, // Pass fetch implementation
+              //request: { fetch }, // Pass fetch implementation
             });
 
             octokit.repos
