@@ -36,7 +36,7 @@ jobs:
 
             octokit.repos
               .listForAuthenticatedUser({
-                visibility: 'private',
+                visibility: 'public',
               })
               .then(({ data }) => {
                 data.forEach(repo => {
