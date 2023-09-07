@@ -30,7 +30,7 @@ jobs:
             const octokit = new Octokit({
               auth: process.env.PERSONAL_ACCESS_TOKEN,
               request: {
-                myfetch,
+                fetch: () => myFetch,
               },
             });
 
