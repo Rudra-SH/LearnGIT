@@ -19,20 +19,22 @@ jobs:
           node-version: 14
 
       - name: Install dependencies
-        run: npm install @octokit/rest
+        run: npm install @octokit/rest node-fetch
 
       - uses: actions/github-script@v6
         with:
           script: |
             const { Octokit } = require('@octokit/rest');
-  
+            const fetch = require('node-fetch'); // Import node-fetch
+
             const octokit = new Octokit({
-              auth: process.env.PERSONAL_ACCESS_TOKEN, // Access the PAT stored as a secret
+              auth: process.env.PERSONAL_ACCESS_TOKEN,
+              request: { fetch }, // Pass fetch implementation
             });
-  
+
             octokit.repos
               .listForAuthenticatedUser({
-                visibility: 'private', // You can change this to 'public' if needed
+                visibility: 'private',
               })
               .then(({ data }) => {
                 data.forEach(repo => {
