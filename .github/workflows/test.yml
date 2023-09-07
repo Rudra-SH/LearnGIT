@@ -21,24 +21,25 @@ jobs:
       - name: Install dependencies
         run: npm install @octokit/rest
 
-      - name: Fetch Personal Repositories
-        run: |
-          const { Octokit } = require('@octokit/rest');
-
-          const octokit = new Octokit({
-            auth: process.env.PERSONAL_ACCESS_TOKEN, // Access the PAT stored as a secret
-          });
-
-          octokit.repos
-            .listForAuthenticatedUser({
-              visibility: 'private', // You can change this to 'public' if needed
-            })
-            .then(({ data }) => {
-              data.forEach(repo => {
-                console.log(repo.name);
-              });
-            })
-            .catch(error => {
-              console.error(error);
-              process.exit(1);
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const { Octokit } = require('@octokit/rest');
+  
+            const octokit = new Octokit({
+              auth: process.env.PERSONAL_ACCESS_TOKEN, // Access the PAT stored as a secret
             });
+  
+            octokit.repos
+              .listForAuthenticatedUser({
+                visibility: 'private', // You can change this to 'public' if needed
+              })
+              .then(({ data }) => {
+                data.forEach(repo => {
+                  console.log(repo.name);
+                });
+              })
+              .catch(error => {
+                console.error(error);
+                process.exit(1);
+              });
