@@ -1,0 +1,36 @@
+name: Convert md to PDF
+
+on:
+  workflow_dispatch:
+jobs:
+  md-to-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install @octokit/rest node-fetch
+          npm install markdown-pdf --save-dev
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const markdownpdf = require("markdown-pdf");
+            const fs = require("fs");
+            
+            const mdFile = "README.md";
+            const pdfFile = "output.pdf";
+            
+            fs.createReadStream(mdFile)
+              .pipe(markdownpdf())
+              .pipe(fs.createWriteStream(pdfFile))
+              .on("finish", () => console.log("PDF created successfully."));
+
