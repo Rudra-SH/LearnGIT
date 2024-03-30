@@ -1,10 +1,7 @@
 name: Fetch Personal Repositories
 
 on:
-  push:
-    branches:
-      - main
-
+  workflow_dispatch:
 jobs:
   fetch-repos:
     runs-on: ubuntu-latest
