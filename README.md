@@ -34,7 +34,7 @@ This is a paragraph of text.
 
 *Italic Text*
 
-[Link to Google]: https://www.google.com
+<a href="https://www.google.com">Go to Google</a>
 
 ![Image](Chameleon_image.jpeg)
 
