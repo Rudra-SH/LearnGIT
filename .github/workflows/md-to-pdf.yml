@@ -34,3 +34,11 @@ jobs:
               .pipe(fs.createWriteStream(pdfFile))
               .on("finish", () => console.log("PDF created successfully."));
 
+      - name: Add PDF file to repository
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+          git add output.pdf
+          git commit -m "Add PDF file"
+          git push origin HEAD:main
+
