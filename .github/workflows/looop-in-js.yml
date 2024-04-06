@@ -1,4 +1,4 @@
-name: listfiles
+name: listfiles in js
 
 on:
   workflow_dispatch:
