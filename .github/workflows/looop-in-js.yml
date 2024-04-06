@@ -20,7 +20,7 @@ jobs:
             const fs = require('fs');
             const files = fs.readdirSync('.').filter(file => file.endsWith('.png'));
             console.log(JSON.stringify(files));
-            core.setOutput(file, files);
+            core.setOutput('file', files);
           
   check:
     needs: list-png-files
