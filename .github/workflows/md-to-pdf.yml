@@ -29,8 +29,12 @@ jobs:
             const mdFile = "README.md";
             const pdfFile = "output.pdf";
             
+            const options = {
+              cssPath: "styles.css" // Path to custom CSS file
+            };
+      
             fs.createReadStream(mdFile)
-              .pipe(markdownpdf())
+              .pipe(markdownpdf(options))
               .pipe(fs.createWriteStream(pdfFile))
               .on("finish", () => console.log("PDF created successfully."));
 
